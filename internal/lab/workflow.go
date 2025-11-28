@@ -19,7 +19,7 @@ func NewWorkflow(ID string, tasks ...*Task) (*Workflow, error) {
 		if i > 2 {
 			task.PreviousNode = tasks[i-1]
 		}
-		if i < len(tasks) && i != len(tasks)-1 {
+		if i != len(tasks)-1 {
 			fmt.Println("before last last", task.equipment.Name, i)
 			task.NextNode = tasks[i+1]
 		}
