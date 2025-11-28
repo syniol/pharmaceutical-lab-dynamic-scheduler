@@ -31,5 +31,8 @@ func TestNewLabSimulator(t *testing.T) {
 		NewTask(analyzer),
 	)
 
-	NewLabSimulator(lab, workflow, workflowTwo)
+	actual := NewLabSimulator(lab, workflow, workflowTwo)
+	if actual != nil {
+		t.Error("expected no error but got, ", actual)
+	}
 }

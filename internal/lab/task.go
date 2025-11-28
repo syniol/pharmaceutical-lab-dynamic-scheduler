@@ -24,8 +24,6 @@ type Task struct {
 	ExpirationDuration time.Duration
 	TaskStatus         TaskStatus
 	startDateTime      time.Time
-	// no need we have Duration
-	//finishDateTime     time.Time
 }
 
 func NewTask(equipment *Equipment) *Task {

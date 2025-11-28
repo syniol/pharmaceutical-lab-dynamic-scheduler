@@ -2,6 +2,7 @@ package lab
 
 import (
 	"fmt"
+	"log"
 	"sync"
 	"time"
 )
@@ -10,7 +11,10 @@ type Lab struct {
 	Equipments []*Equipment
 }
 
-func NewLabSimulator(lab *Lab, workflows ...*Workflow) {
+// NewLabSimulator Simulates the lab equipment and workflows
+// lab is not used now, but it could be used to match IDs in workflow instead of reference
+// workflows are set of tasks
+func NewLabSimulator(lab *Lab, workflows ...*Workflow) error {
 	var wait sync.WaitGroup
 	wait.Add(len(workflows))
 
@@ -37,7 +41,7 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) {
 
 					if task.TaskStatus == TaskStatusCompleted {
 						if doneCount == len(workflow.Tasks)-1 {
-							fmt.Println(fmt.Sprintf("Finished all Tasks"))
+							log.Println(fmt.Sprintf("Finished every task in the workflow"))
 
 							done = true
 							wait.Done()
@@ -50,4 +54,6 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) {
 		}()
 	}
 	wait.Wait()
+
+	return nil
 }
