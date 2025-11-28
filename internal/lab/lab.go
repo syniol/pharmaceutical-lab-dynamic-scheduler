@@ -23,9 +23,7 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) error {
 		go func() {
 			done := false
 			for done == false {
-				doneCount := 0
-
-				for _, task := range workflow.Tasks {
+				for i, task := range workflow.Tasks {
 					if task.TaskStatus == TaskStatusNew {
 						if task.PreviousNode != nil && task.PreviousNode.TaskStatus != TaskStatusCompleted {
 							break
@@ -43,14 +41,13 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) error {
 					}
 
 					if task.TaskStatus == TaskStatusCompleted {
-						if doneCount == len(workflow.Tasks)-1 {
+						if i == len(workflow.Tasks)-1 {
 							log.Println(fmt.Sprintf("Finished every task in the workflow"))
 
 							done = true
 							wait.Done()
 							break
 						}
-						doneCount++
 					}
 				}
 			}
