@@ -19,6 +19,7 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) error {
 	wait.Add(len(workflows))
 
 	for _, workflow := range workflows {
+		// todo: Consider and resolve any race condition issue
 		go func() {
 			done := false
 			for done == false {
