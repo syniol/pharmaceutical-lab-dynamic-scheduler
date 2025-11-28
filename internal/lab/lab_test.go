@@ -28,6 +28,7 @@ func TestNewLabSimulator(t *testing.T) {
 		"B",
 		NewTask(incubator),
 		NewTask(extractor),
+		NewTask(analyzer),
 	)
 
 	NewLabSimulator(lab, workflow, workflowTwo)

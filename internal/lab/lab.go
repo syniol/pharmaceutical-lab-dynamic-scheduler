@@ -22,6 +22,10 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) {
 
 				for _, task := range workflow.Tasks {
 					if task.TaskStatus == TaskStatusNew {
+						if task.PreviousNode != nil && task.PreviousNode.TaskStatus != TaskStatusCompleted {
+							break
+						}
+
 						if task.equipment.status == EquipmentStatusIdle {
 							task.Start()
 							time.Sleep(task.Duration)

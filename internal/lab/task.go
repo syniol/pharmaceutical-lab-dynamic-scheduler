@@ -32,6 +32,7 @@ func NewTask(equipment *Equipment) *Task {
 	return &Task{
 		TaskStatus: TaskStatusNew,
 		equipment:  equipment,
+		Node:       &pkg.Node[Task]{},
 	}
 }
 
