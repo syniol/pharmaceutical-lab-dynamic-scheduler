@@ -1,6 +1,9 @@
 package lab
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestNewLabSimulator(t *testing.T) {
 	incubator, extractor, dispenser, analyzer :=
@@ -24,11 +27,16 @@ func TestNewLabSimulator(t *testing.T) {
 		NewTask(extractor),
 	)
 
+	taskOne := NewTask(incubator)
+	taskTwo := NewTask(extractor)
+	taskTwo.Duration = time.Second * 4
+	taskThree := NewTask(analyzer)
+
 	workflowTwo, _ := NewWorkflow(
 		"B",
-		NewTask(incubator),
-		NewTask(extractor),
-		NewTask(analyzer),
+		taskOne,
+		taskTwo,
+		taskThree,
 	)
 
 	actual := NewLabSimulator(lab, workflow, workflowTwo)

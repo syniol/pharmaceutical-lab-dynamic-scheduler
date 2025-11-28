@@ -33,8 +33,8 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) error {
 
 						if task.equipment.status == EquipmentStatusIdle {
 							task.Start()
-							time.Sleep(task.Duration)
 							// Emulating done - Here we will call an external API controlling the robot
+							time.Sleep(task.Duration)
 							task.Done()
 
 							continue
