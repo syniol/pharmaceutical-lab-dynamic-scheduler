@@ -30,6 +30,8 @@ func NewLabSimulator(lab *Lab, workflows ...*Workflow) error {
 							break
 						}
 
+						// todo: include the Duration check for previous and after task for expiration
+
 						if task.equipment.status == EquipmentStatusIdle {
 							task.Start()
 							time.Sleep(task.Duration)
