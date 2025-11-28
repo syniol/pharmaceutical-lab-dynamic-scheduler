@@ -7,7 +7,7 @@ type Workflow struct {
 
 func NewWorkflow(ID string, tasks ...*Task) (*Workflow, error) {
 	for i, task := range tasks {
-		if i > 2 {
+		if i > 1 {
 			task.PreviousNode = tasks[i-1]
 		}
 		if i != len(tasks)-1 {

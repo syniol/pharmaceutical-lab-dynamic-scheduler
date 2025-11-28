@@ -1,6 +1,7 @@
 package lab
 
 import (
+	"log"
 	"time"
 
 	"automata/pkg"
@@ -41,6 +42,7 @@ func (task *Task) Start() {
 }
 
 func (task *Task) Done() {
+	log.Println("done task")
 	task.equipment.status = EquipmentStatusIdle
 	task.TaskStatus = TaskStatusCompleted
 }
